@@ -1,22 +1,18 @@
-public class Ride {
+public class Ride implements RideInterface{
     //  Class that tracks the rides available at the theme park, e.g., roller coaster, water riders, etc.
 
     private int ID;
     private String name;
     private Employee rideOperator;
 
-    /**
-     * Default Constructor
-     */   
+    /** Default Constructor */   
     public Ride() {
         this.ID = 0;
         this.name = "Unknown";
         this.rideOperator = new Employee(); // calls default constructor of Employee class
     }    
 
-    /**
-     * Parameterised (Second) Constructor
-     */    
+    /** Parameterised (Second) Constructor */    
     public Ride(int ID, String name, Employee rideOperator) {
         // initialise person properties
         setID(ID);
@@ -24,9 +20,7 @@ public class Ride {
         setRideOperator(rideOperator);
     }
 
-    /**
-     * Getter and Setter Methods with validation
-     */
+    /** Getter and Setter Methods with validation */
     public int getID() {
         return ID;
     }
@@ -61,5 +55,55 @@ public class Ride {
     public void setRideOperator(Employee rideOperator) {
         this.rideOperator = rideOperator;
     }
+
+
+    /** An interface method that adds a visitor to the queue */
+    @Override
+    public void addVisitorToQueue(Visitor visitor) {
+
+    }
+
+    /** An interface method that removes a visitor from the queue */
+    @Override
+    public void removeVisitorFromQueue(Visitor visitor) {
+
+    }
+
+    /** An interface method that prints the list of waiting visitors in the queue */
+    @Override
+    public void printQueue() {
+
+    }
+
+    /** An interface method that runs the ride for one cycle */
+    @Override
+    public void runOneCycle() {
+
+    }
+
+    /** An interface method that adds a visitor to the ride history */
+    @Override
+    public void addVisitorToHistory(Visitor visitor) {
+
+    }
+
+    /** An interface method that checks whether the visitor is in the ride history */
+    @Override
+    public void checkVisitorFromHistory(Visitor visitor) {
+
+    }
+
+    /** An interface method that returns the number of Visitors in the ride history */
+    @Override
+    public void numberOfVisitors() {
+
+    }
+
+    /** An interface method that prints the list of visitors who took the rides */
+    @Override
+    public void printRideHistory() {
+
+    }
+
 
 }
