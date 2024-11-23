@@ -3,7 +3,12 @@ import java.time.LocalDate;
 public class AssignmentTwo {
     public static void main(String[] args) throws Exception {
         
+        System.out.println("-------------------");
         partThree();
+        System.out.println("-------------------");
+        partFourA();
+        System.out.println("-------------------");
+
     }
 
     public static void partThree(){
@@ -31,9 +36,30 @@ public class AssignmentTwo {
         r1.removeVisitorFromQueue();
 
         r1.printQueue();
+
     }
 
-    public void partFourA(){
+    public static void partFourA(){
+
+        Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
+        Ride r1 = new Ride(1001, "Superman Escape", e1);
+
+        Visitor v1 = new Visitor(1001, "Grace", 23, LocalDate.now(), "Student");
+        Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
+        Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
+        Visitor v4 = new Visitor(1002, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1002, "Elizabeth", 43, LocalDate.now(), "Adult");
+
+        r1.addVisitorToHistory(v1);
+        r1.addVisitorToHistory(v2);
+        r1.addVisitorToHistory(v3);
+        r1.addVisitorToHistory(v4);
+        r1.addVisitorToHistory(v5);
+
+        r1.checkVisitorFromHistory(v3);
+
+        r1.numberOfVisitors();
+        r1.printRideHistory();
 
     }
 

@@ -1,6 +1,6 @@
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Ride implements RideInterface{
     //  Class that tracks the rides available at the theme park, e.g., roller coaster, water riders, etc.
@@ -8,7 +8,8 @@ public class Ride implements RideInterface{
     private int ID;
     private String name;
     private Employee rideOperator;
-    private Queue<Visitor> queue;
+    private Queue<Visitor> queue; 
+    private LinkedList<Visitor> rideHistory; // creates a doubly linked list that will store a collection of Visitor objects
 
     /** Default Constructor */   
     public Ride() {
@@ -16,6 +17,7 @@ public class Ride implements RideInterface{
         this.name = "Unknown";
         this.rideOperator = new Employee(); // calls default constructor of Employee class
         queue = new LinkedList<>();
+        rideHistory = new LinkedList<>();
     }    
 
     /** Parameterised (Second) Constructor */    
@@ -25,6 +27,7 @@ public class Ride implements RideInterface{
         setName(name);
         setRideOperator(rideOperator);
         queue = new LinkedList<>();
+        rideHistory = new LinkedList<>();
     }
 
     /** Getter and Setter Methods with validation */
@@ -111,25 +114,54 @@ public class Ride implements RideInterface{
     /** An interface method that adds a visitor to the ride history */
     @Override
     public void addVisitorToHistory(Visitor visitor) {
-
+        if (visitor != null) {
+            rideHistory.add(visitor);
+            System.out.println(visitor.getName() + " has been added to the ride history.");
+        } else {
+            System.out.println("Cannot add a null visitor to the ride history.");
+        }
     }
 
     /** An interface method that checks whether the visitor is in the ride history */
     @Override
     public void checkVisitorFromHistory(Visitor visitor) {
+        if (visitor == null) {
+            System.out.println("Visitor cannot be null.");
+            return; // Exit early if the visitor is null
+        }
 
+        if (rideHistory.isEmpty()) {
+            System.out.println("There is no history for this ride.");
+            return; // Exit early if the ride history is empty
+        }
+
+        if (rideHistory.contains(visitor)) {
+            System.out.println(visitor.getName() + " was found in the ride history.");
+        } else {
+            System.out.println(visitor.getName() + " was not found in the ride history.");
+        }
     }
 
     /** An interface method that returns the number of Visitors in the ride history */
     @Override
     public void numberOfVisitors() {
-
+        if (!rideHistory.isEmpty()) {
+            System.out.println("Number of visitors in the ride history: " + rideHistory.size());
+        } else {
+            System.out.println("There is no history for this ride.");
+        }
     }
 
     /** An interface method that prints the list of visitors who took the rides */
     @Override
     public void printRideHistory() {
-
+        if (!rideHistory.isEmpty()) {
+            Iterator<Visitor> llIter = rideHistory.iterator(); // sets up an Iterator to loop through the rideHistory LinkedList.
+            System.out.println("Ride Visitor History:");
+            llIter.forEachRemaining(visitor -> System.out.println(visitor));
+        } else {
+            System.out.println("There is no history for this ride.");
+        }
     }
 
 
