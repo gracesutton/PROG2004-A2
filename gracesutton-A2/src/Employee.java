@@ -25,7 +25,7 @@ public class Employee extends Person {
     public Employee(int ID, String name, int age, String employmentType, String role) {
         super(ID, name, age); // Call parameterised constructor of HealthProfessional
         setEmploymentType(employmentType);
-
+        setRole(role);
     }
 
     /**
@@ -57,6 +57,12 @@ public class Employee extends Person {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    /** Method to export the employee details as a string */
+    @Override
+    public String toString() {
+        return super.toString() + " Employment type: " + employmentType + " Role: " + role;
     }
 
 }

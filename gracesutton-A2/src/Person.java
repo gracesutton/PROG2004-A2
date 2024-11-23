@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     // Base class to represent a Person
 
     private int ID;
@@ -8,7 +8,7 @@ public class Person {
     /**
      * Default Constructor
      */   
-    public Person() {
+    protected Person() {
         this.ID = 0;
         this.name = "Unknown";
         this.age = 0;
@@ -17,7 +17,7 @@ public class Person {
     /**
      * Parameterised (Second) Constructor
      */    
-    public Person(int ID, String name, int age) {
+    protected Person(int ID, String name, int age) {
         // initialise person properties
         setID(ID);
         setName(name);
@@ -66,6 +66,15 @@ public class Person {
         }
     }
 
+    // Methods are public abstract
+
+    /** Method to export the person details as a string */
+    @Override
+    public String toString() {
+        return "ID: " + ID + " Name: " + name + " Age: " + age;
+    }
+
 }
+
 
 
