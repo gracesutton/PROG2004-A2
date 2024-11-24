@@ -10,6 +10,8 @@ public class AssignmentTwo {
         System.out.println("-------------------");
         partFourB();
         System.out.println("-------------------");
+        partFive();
+        System.out.println("-------------------");
 
     }
 
@@ -18,14 +20,14 @@ public class AssignmentTwo {
         Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
         System.out.println(e1);
 
-        Ride r1 = new Ride(1001, "Superman Escape", e1);
+        Ride r1 = new Ride(1001, "Superman Escape", e1, 4);
         System.out.println(r1);
 
-        Visitor v1 = new Visitor(1001, "Grace", 23, LocalDate.now(), "Student");
+        Visitor v1 = new Visitor(1001, "Grace", 24, LocalDate.now(), "Student");
         Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
         Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
-        Visitor v4 = new Visitor(1002, "Michael", 45, LocalDate.now(), "Adult");
-        Visitor v5 = new Visitor(1002, "Elizabeth", 43, LocalDate.now(), "Adult");
+        Visitor v4 = new Visitor(1004, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1005, "Elizabeth", 43, LocalDate.now(), "Adult");
 
         System.out.println(v1);
 
@@ -44,13 +46,13 @@ public class AssignmentTwo {
     public static void partFourA(){
 
         Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
-        Ride r1 = new Ride(1001, "Superman Escape", e1);
+        Ride r1 = new Ride(1001, "Superman Escape", e1, 4);
 
-        Visitor v1 = new Visitor(1001, "Grace", 23, LocalDate.now(), "Student");
+        Visitor v1 = new Visitor(1001, "Grace", 24, LocalDate.now(), "Student");
         Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
         Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
-        Visitor v4 = new Visitor(1002, "Michael", 45, LocalDate.now(), "Adult");
-        Visitor v5 = new Visitor(1002, "Elizabeth", 43, LocalDate.now(), "Adult");
+        Visitor v4 = new Visitor(1004, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1005, "Elizabeth", 43, LocalDate.now(), "Adult");
 
         r1.addVisitorToHistory(v1);
         r1.addVisitorToHistory(v2);
@@ -68,13 +70,13 @@ public class AssignmentTwo {
     public static void partFourB(){
 
         Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
-        Ride r1 = new Ride(1001, "Superman Escape", e1);
+        Ride r1 = new Ride(1001, "Superman Escape", e1, 4);
 
-        Visitor v1 = new Visitor(1001, "Grace", 23, LocalDate.now(), "Student");
+        Visitor v1 = new Visitor(1001, "Grace", 24, LocalDate.now(), "Student");
         Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
         Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
-        Visitor v4 = new Visitor(1002, "Michael", 45, LocalDate.now(), "Adult");
-        Visitor v5 = new Visitor(1002, "Elizabeth", 43, LocalDate.now(), "Adult");
+        Visitor v4 = new Visitor(1004, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1005, "Elizabeth", 43, LocalDate.now(), "Adult");
 
         r1.addVisitorToHistory(v1);
         r1.addVisitorToHistory(v2);
@@ -89,6 +91,38 @@ public class AssignmentTwo {
     }
 
     public static void partFive(){
+
+        Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
+        Ride r1 = new Ride(1001, "Superman Escape", e1, 4);
+
+        Visitor v1 = new Visitor(1001, "Grace", 24, LocalDate.now(), "Student");
+        Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
+        Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
+        Visitor v4 = new Visitor(1004, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1005, "Elizabeth", 43, LocalDate.now(), "Adult");
+        Visitor v6 = new Visitor(1006, "Lucy", 30, LocalDate.now(), "Adult");
+        Visitor v7 = new Visitor(1007, "Jade", 23, LocalDate.now(), "Student");
+        Visitor v8 = new Visitor(1008, "Paige", 24, LocalDate.now(), "Adult");
+        Visitor v9 = new Visitor(1009, "Holly", 12, LocalDate.now(), "Child");
+        Visitor v10 = new Visitor(1010, "Jake", 9, LocalDate.now(), "Child");
+        
+        r1.addVisitorToQueue(v1);
+        r1.addVisitorToQueue(v2);
+        r1.addVisitorToQueue(v3);
+        r1.addVisitorToQueue(v4);
+        r1.addVisitorToQueue(v5);
+        r1.addVisitorToQueue(v6);
+        r1.addVisitorToQueue(v7);
+        r1.addVisitorToQueue(v8);
+        r1.addVisitorToQueue(v9);
+        r1.addVisitorToQueue(v10);
+
+        r1.printQueue();
+
+        r1.runOneCycle();
+
+        r1.printQueue();
+        r1.printRideHistory();
 
     }
 

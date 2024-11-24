@@ -11,6 +11,8 @@ public class Ride implements RideInterface{
     private Employee rideOperator;
     private Queue<Visitor> queue; 
     private LinkedList<Visitor> rideHistory; // creates a doubly linked list that will store a collection of Visitor objects
+    private int maxRider; // how many visitors a ride can take in one cycle
+    private int numOfCycles; // how many times the ride is run. By default, it is 0
 
     /** Default Constructor */   
     public Ride() {
@@ -19,16 +21,20 @@ public class Ride implements RideInterface{
         this.rideOperator = new Employee(); // calls default constructor of Employee class
         queue = new LinkedList<>();
         rideHistory = new LinkedList<>();
+        this.maxRider = 1;
+        this.numOfCycles = 0;
     }    
 
     /** Parameterised (Second) Constructor */    
-    public Ride(int ID, String name, Employee rideOperator) {
+    public Ride(int ID, String name, Employee rideOperator, int maxRider) {
         // initialise person properties
         setID(ID);
         setName(name);
         setRideOperator(rideOperator);
         queue = new LinkedList<>();
         rideHistory = new LinkedList<>();
+        this.maxRider = maxRider;
+        numOfCycles = 0; // default value of 0, increase by 1 each time the ride is run.
     }
 
     /** Getter and Setter Methods with validation */
@@ -67,9 +73,27 @@ public class Ride implements RideInterface{
         this.rideOperator = rideOperator;
     }
 
+    public int getMaxRider() {
+        return maxRider;
+    }
+
+    public void setMaxRider(int maxRider) {
+        //perform input validation for the max riders - must be a positive value greater than or equal to 1.
+        if (maxRider >= 1) {
+            this.maxRider = maxRider;
+        } else {
+            System.out.println("Invalid Max Riders: Must be 1 or more.");
+        }
+        
+    }
+
+    public int getNumOfCycles() {
+        return numOfCycles;
+    }
+
     @Override
     public String toString() {
-        return "Ride ID: " + ID + " Ride name: " + name + " Ride operator: " + rideOperator.getName();
+        return "Ride ID: " + ID + ", Ride name: " + name + ", Ride operator: " + rideOperator.getName() + ", Max riders: " + maxRider + ", Number of cycles: " + numOfCycles;
     }
 
     /** An interface method that adds a visitor to the queue */
@@ -83,15 +107,17 @@ public class Ride implements RideInterface{
         }
     }
 
-    /** An interface method that removes a visitor from the queue */
+    /** An interface method that removes a visitor from the queue and returns the removed visitor object */
     @Override
-    public void removeVisitorFromQueue() {
+    public Visitor removeVisitorFromQueue() {
         Visitor removedVisitor = queue.poll(); // Removes and returns the head of the queue, returns null if queue empty.
         if (removedVisitor != null) {
             System.out.println(removedVisitor.getName() + " has been removed from the queue.");
+            
         } else {
             System.out.println("No visitors to remove. The queue is empty.");
         }
+        return removedVisitor; // returns removed visitor object
     }
 
     /** An interface method that prints the list of waiting visitors in the queue */
@@ -108,8 +134,24 @@ public class Ride implements RideInterface{
 
     /** An interface method that runs the ride for one cycle */
     @Override
-    public void runOneCycle() {
+    public void runOneCycle() { 
+        if ((rideOperator == null) || (rideOperator.getName().equals("Unknown"))) { // checks if there is a ride operator assigned
+            System.out.println("Sorry, no operator is available. The ride cannot be run.");
+            return;
+        }
+        if  (queue.isEmpty()) { // checks if there are visitors in the queue
+            System.out.println("There are no waiting visitors. The ride cannot be run.");
+            return;
+        }
 
+        System.out.println("Running one cycle of the ride...");
+
+        for (int i = 0; i < maxRider; i++) {
+            Visitor visitor = removeVisitorFromQueue(); // removes the visitor from the queue and returns the removed visitor object.
+            addVisitorToHistory(visitor); // adds visitor to the ride history
+        }
+        numOfCycles++; // Increment the number of cycles the ride has run
+        System.out.println("Ride cycle complete. Total cycles run: " + numOfCycles);
     }
 
     /** An interface method that adds a visitor to the ride history */
