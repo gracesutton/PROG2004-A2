@@ -8,6 +8,8 @@ public class AssignmentTwo {
         System.out.println("-------------------");
         partFourA();
         System.out.println("-------------------");
+        partFourB();
+        System.out.println("-------------------");
 
     }
 
@@ -63,19 +65,38 @@ public class AssignmentTwo {
 
     }
 
-    public void partFourB(){
+    public static void partFourB(){
+
+        Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
+        Ride r1 = new Ride(1001, "Superman Escape", e1);
+
+        Visitor v1 = new Visitor(1001, "Grace", 23, LocalDate.now(), "Student");
+        Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
+        Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
+        Visitor v4 = new Visitor(1002, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1002, "Elizabeth", 43, LocalDate.now(), "Adult");
+
+        r1.addVisitorToHistory(v1);
+        r1.addVisitorToHistory(v2);
+        r1.addVisitorToHistory(v3);
+        r1.addVisitorToHistory(v4);
+        r1.addVisitorToHistory(v5);
+
+        r1.printRideHistory();       
+        r1.sortRideHistory(); // sorts by name and age
+        r1.printRideHistory(); 
 
     }
 
-    public void partFive(){
+    public static void partFive(){
 
     }
 
-    public void partSix(){
+    public static void partSix(){
 
     }
 
-    public void partSeven(){
+    public static void partSeven(){
 
     }
 

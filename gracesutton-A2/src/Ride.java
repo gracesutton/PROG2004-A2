@@ -1,4 +1,5 @@
 import java.util.Queue;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -125,6 +126,7 @@ public class Ride implements RideInterface{
     /** An interface method that checks whether the visitor is in the ride history */
     @Override
     public void checkVisitorFromHistory(Visitor visitor) {
+        System.out.println("Checking for visitor.");
         if (visitor == null) {
             System.out.println("Visitor cannot be null.");
             return; // Exit early if the visitor is null
@@ -148,7 +150,7 @@ public class Ride implements RideInterface{
         if (!rideHistory.isEmpty()) {
             System.out.println("Number of visitors in the ride history: " + rideHistory.size());
         } else {
-            System.out.println("There is no history for this ride.");
+            System.out.println("There is no history for this ride. Could not print number of visitors.");
         }
     }
 
@@ -160,9 +162,18 @@ public class Ride implements RideInterface{
             System.out.println("Ride Visitor History:");
             llIter.forEachRemaining(visitor -> System.out.println(visitor));
         } else {
-            System.out.println("There is no history for this ride.");
+            System.out.println("There is no history for this ride. Could not print visitors.");
         }
     }
 
+    /** Class method to sort visitors in the ride history by name and age using the Comparator interface */
+    public void sortRideHistory() {
+        if (!rideHistory.isEmpty()) {
+            System.out.println("Sorting visitor history by name and age.");
+            Collections.sort(rideHistory, new VisitorComparator());
+        } else {
+            System.out.println("There is no history for this ride. Could not sort visitors.");
+        }
+    }
 
 }
