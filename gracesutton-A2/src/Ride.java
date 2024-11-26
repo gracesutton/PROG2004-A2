@@ -1,4 +1,7 @@
 import java.util.Queue;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -215,6 +218,25 @@ public class Ride implements RideInterface{
             Collections.sort(rideHistory, new VisitorComparator());
         } else {
             System.out.println("There is no history for this ride. Could not sort visitors.");
+        }
+    }
+
+    /** Class method that writes the details of all of the Visitors that have taken the ride to a file. */
+    public void exportRideHistory(String fileName) {
+
+        if (rideHistory.isEmpty()) { // check if rideHistory is empty before exporting
+            System.out.println("The ride history is empty. No data to export.");
+            return; 
+    }
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {  // try-with-resources 
+            for (Visitor visitor : rideHistory) {
+                bufferedWriter.write(visitor.toString());
+                bufferedWriter.newLine();
+            }
+            System.out.println("Ride history exported successfully to file.");
+
+        } catch (IOException e) { // exception handling: IOException covers everything.
+            e.printStackTrace();
         }
     }
 

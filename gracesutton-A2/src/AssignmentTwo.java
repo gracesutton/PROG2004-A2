@@ -12,6 +12,8 @@ public class AssignmentTwo {
         System.out.println("-------------------");
         partFive();
         System.out.println("-------------------");
+        partSix();
+        System.out.println("-------------------");
 
     }
 
@@ -127,6 +129,23 @@ public class AssignmentTwo {
     }
 
     public static void partSix(){
+
+        Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
+        Ride r1 = new Ride(1001, "Superman Escape", e1, 4);
+
+        Visitor v1 = new Visitor(1001, "Grace", 24, LocalDate.now(), "Student");
+        Visitor v2 = new Visitor(1002, "Crawford", 21, LocalDate.now(), "Adult");
+        Visitor v3 = new Visitor(1003, "Callum", 11, LocalDate.now(), "Child");
+        Visitor v4 = new Visitor(1004, "Michael", 45, LocalDate.now(), "Adult");
+        Visitor v5 = new Visitor(1005, "Elizabeth", 43, LocalDate.now(), "Adult");
+
+        r1.addVisitorToHistory(v1);
+        r1.addVisitorToHistory(v2);
+        r1.addVisitorToHistory(v3);
+        r1.addVisitorToHistory(v4);
+        r1.addVisitorToHistory(v5);
+
+        r1.exportRideHistory("SupermanEscapeRideHistory.txt");
 
     }
 
