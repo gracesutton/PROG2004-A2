@@ -1,7 +1,10 @@
 import java.util.Queue;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -230,10 +233,40 @@ public class Ride implements RideInterface{
     }
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {  // try-with-resources 
             for (Visitor visitor : rideHistory) {
-                bufferedWriter.write(visitor.toString());
+                bufferedWriter.write(visitor.getID() + "," + visitor.getName() + "," + visitor.getAge() + ","  + visitor.getVisitDate() + "," + visitor.getTicketType());
                 bufferedWriter.newLine();
             }
-            System.out.println("Ride history exported successfully to file.");
+            System.out.println("Ride history successfully exported to file.");
+
+        } catch (IOException e) { // exception handling: IOException covers everything.
+            e.printStackTrace();
+        }
+    }
+
+    /** Class method that restores visitors who have taken the ride from a file. */
+    public void importRideHistory(String fileName) {
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {  // try-with-resources 
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) { // while loop to read through the lines
+
+                String[] tokens = line.split(","); // 
+
+                // parses and assigns visitor details to variables
+                int id = Integer.parseInt(tokens[0]);
+                String name = tokens[1];
+                int age = Integer.parseInt(tokens[2]);
+                LocalDate visitDate = LocalDate.parse(tokens[3]);
+                String ticketType = tokens[4];
+
+                Visitor visitor = new Visitor(id, name, age, visitDate, ticketType); // creates a new Visitor object using the parsed variables
+
+                rideHistory.add(visitor); // adds visitor back to the RideHistory Linked List
+                System.out.println(visitor.getName() + " has been added to the ride history.");
+
+            }
+            System.out.println("Ride history successfully imported from file.");
 
         } catch (IOException e) { // exception handling: IOException covers everything.
             e.printStackTrace();

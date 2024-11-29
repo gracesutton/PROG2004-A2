@@ -14,6 +14,8 @@ public class AssignmentTwo {
         System.out.println("-------------------");
         partSix();
         System.out.println("-------------------");
+        partSeven();
+        System.out.println("-------------------");
 
     }
 
@@ -150,6 +152,14 @@ public class AssignmentTwo {
     }
 
     public static void partSeven(){
+
+        Employee e1 = new Employee(1001, "Luke", 25, "Full-time", "Ride Operator");
+        Ride r1 = new Ride(1001, "Superman Escape", e1, 4);
+
+        r1.importRideHistory("SupermanEscapeRideHistory.txt");
+        r1.numberOfVisitors();
+        r1.printRideHistory();
+
 
     }
 

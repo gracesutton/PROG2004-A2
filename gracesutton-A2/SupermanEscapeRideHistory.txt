@@ -1,5 +1,5 @@
-ID: 1001 Name: Grace Age: 24 Visit date: 2024-11-26 Ticket type: Student
-ID: 1002 Name: Crawford Age: 21 Visit date: 2024-11-26 Ticket type: Adult
-ID: 1003 Name: Callum Age: 11 Visit date: 2024-11-26 Ticket type: Child
-ID: 1004 Name: Michael Age: 45 Visit date: 2024-11-26 Ticket type: Adult
-ID: 1005 Name: Elizabeth Age: 43 Visit date: 2024-11-26 Ticket type: Adult
+1001,Grace,24,2024-11-29,Student
+1002,Crawford,21,2024-11-29,Adult
+1003,Callum,11,2024-11-29,Child
+1004,Michael,45,2024-11-29,Adult
+1005,Elizabeth,43,2024-11-29,Adult
