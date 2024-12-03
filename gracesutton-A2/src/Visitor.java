@@ -47,6 +47,11 @@ public class Visitor extends Person{
 
     public void setTicketType(String ticketType) {
         this.ticketType = ticketType;
+        // input validation for ticket type. Must be one of: Child, Adult, Student, or Concession
+        switch (ticketType) {
+            case "Child", "Adult", "Student", "Concession" -> this.ticketType = ticketType;
+            default -> System.out.println(ticketType + " is invalid. Must be one of: Child, Adult, Student, Concession.");
+        }
     }
 
     /** Method to export the visitor details as a string */

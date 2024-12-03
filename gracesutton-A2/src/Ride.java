@@ -31,7 +31,19 @@ public class Ride implements RideInterface{
         this.numOfCycles = 0;
     }    
 
-    /** Parameterised (Second) Constructor */    
+    /** Parameterised Constructor (without maxRider) */    
+    public Ride(int ID, String name, Employee rideOperator) {
+        // initialise person properties
+        setID(ID);
+        setName(name);
+        setRideOperator(rideOperator);
+        queue = new LinkedList<>();
+        rideHistory = new LinkedList<>();
+        this.maxRider = 1; // default value of 1
+        numOfCycles = 0; // default value of 0, increase by 1 each time the ride is run.
+    }
+
+    /** Parameterised Constructor (with maxRider) - constructor overloading */    
     public Ride(int ID, String name, Employee rideOperator, int maxRider) {
         // initialise person properties
         setID(ID);
@@ -39,7 +51,7 @@ public class Ride implements RideInterface{
         setRideOperator(rideOperator);
         queue = new LinkedList<>();
         rideHistory = new LinkedList<>();
-        this.maxRider = maxRider;
+        setMaxRider(maxRider);
         numOfCycles = 0; // default value of 0, increase by 1 each time the ride is run.
     }
 
@@ -90,7 +102,6 @@ public class Ride implements RideInterface{
         } else {
             System.out.println("Invalid Max Riders: Must be 1 or more.");
         }
-        
     }
 
     public int getNumOfCycles() {
@@ -152,7 +163,7 @@ public class Ride implements RideInterface{
 
         System.out.println("Running one cycle of the ride...");
 
-        for (int i = 0; i < maxRider; i++) {
+        for (int i = 0; (i < maxRider) && (!queue.isEmpty()); i++) { 
             Visitor visitor = removeVisitorFromQueue(); // removes the visitor from the queue and returns the removed visitor object.
             addVisitorToHistory(visitor); // adds visitor to the ride history
         }
@@ -174,7 +185,7 @@ public class Ride implements RideInterface{
     /** An interface method that checks whether the visitor is in the ride history */
     @Override
     public void checkVisitorFromHistory(Visitor visitor) {
-        System.out.println("Checking for visitor.");
+        System.out.println("Checking for visitor");
         if (visitor == null) {
             System.out.println("Visitor cannot be null.");
             return; // Exit early if the visitor is null
@@ -194,12 +205,15 @@ public class Ride implements RideInterface{
 
     /** An interface method that returns the number of Visitors in the ride history */
     @Override
-    public void numberOfVisitors() {
+    public int numberOfVisitors() {
+        int numVisitors = 0;
         if (!rideHistory.isEmpty()) {
-            System.out.println("Number of visitors in the ride history: " + rideHistory.size());
+            numVisitors = rideHistory.size();
+            System.out.println("Number of visitors in the ride history: " + numVisitors);
         } else {
             System.out.println("There is no history for this ride. Could not print number of visitors.");
         }
+        return numVisitors; // returns the number of Visitors
     }
 
     /** An interface method that prints the list of visitors who took the rides */
@@ -229,14 +243,14 @@ public class Ride implements RideInterface{
 
         if (rideHistory.isEmpty()) { // check if rideHistory is empty before exporting
             System.out.println("The ride history is empty. No data to export.");
-            return; 
+            return; // exit
     }
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {  // try-with-resources 
             for (Visitor visitor : rideHistory) {
                 bufferedWriter.write(visitor.getID() + "," + visitor.getName() + "," + visitor.getAge() + ","  + visitor.getVisitDate() + "," + visitor.getTicketType());
                 bufferedWriter.newLine();
             }
-            System.out.println("Ride history successfully exported to file.");
+            System.out.println("Ride history successfully exported to file: " + fileName);
 
         } catch (IOException e) { // exception handling: IOException covers everything.
             e.printStackTrace();
@@ -262,11 +276,11 @@ public class Ride implements RideInterface{
 
                 Visitor visitor = new Visitor(id, name, age, visitDate, ticketType); // creates a new Visitor object using the parsed variables
 
-                rideHistory.add(visitor); // adds visitor back to the RideHistory Linked List
+                addVisitorToHistory(visitor);  // adds visitor back to the RideHistory Linked List
                 System.out.println(visitor.getName() + " has been added to the ride history.");
 
             }
-            System.out.println("Ride history successfully imported from file.");
+            System.out.println("Ride history successfully imported from file: " + fileName);
 
         } catch (IOException e) { // exception handling: IOException covers everything.
             e.printStackTrace();

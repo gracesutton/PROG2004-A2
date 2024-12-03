@@ -66,8 +66,6 @@ public abstract class Person {
         }
     }
 
-    // Methods are public abstract
-
     /** Method to export the person details as a string */
     @Override
     public String toString() {
