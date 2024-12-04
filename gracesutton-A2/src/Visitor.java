@@ -58,7 +58,6 @@ public class Visitor extends Person{
     @Override
     public String toString() {
         return super.toString() + " Visit date: " + visitDate + " Ticket type: " + ticketType;
-        // return "Visitor ID: " + super.getID() + " Name: " + super.getName() + " Age: " + super.getAge() + " Visit date: " + visitDate + " Ticket type: " + ticketType;
     }
 
 }

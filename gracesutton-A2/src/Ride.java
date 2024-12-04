@@ -39,7 +39,7 @@ public class Ride implements RideInterface{
         setRideOperator(rideOperator);
         queue = new LinkedList<>();
         rideHistory = new LinkedList<>();
-        this.maxRider = 1; // default value of 1
+        setMaxRider(1); // default value of 1
         numOfCycles = 0; // default value of 0, increase by 1 each time the ride is run.
     }
 
